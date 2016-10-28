@@ -1,0 +1,21 @@
+version: "2"
+services:
+  mysql:
+    container_name: karambamysql
+    image: mysql:5.7.12
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=karambacars
+    volumes:
+      - ./config/mysql/:/etc/mysql/conf.d
+  karambacars:
+    container_name: karambacars
+    image: ${IMAGE_NAME}
+    build:
+      context: .
+      args:
+        SOURCES_MIRROR: "${SOURCES_MIRROR}"
+    environment:
+      - SYMFONY__DATABASE__HOST=mysql
+    depends_on:
+      - mysql

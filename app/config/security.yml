@@ -1,0 +1,78 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory: ~
+        adminProvider:
+            id: AdministratorProvider
+        dealerProvider:
+            entity:
+              class: AppBundle:Dealer
+              property: email
+        clientProvider:
+            entity:
+              class: AppBundle:Client
+              property: email
+
+    encoders:
+      plain:
+        algorithm: plaintext
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|attachment|js)/
+            security: false
+        admin_login:
+            provider: adminProvider
+            guard:
+              authenticators:
+                  - AdminLoginSecurityProvider
+            pattern: ^/api/admin/login
+        dealers_applications:
+            provider: adminProvider
+            guard:
+              authenticators:
+                - TokenSecurityProvider
+            pattern: ^/api/dealer/application
+
+        dealer_login:
+            provider: dealerProvider
+            guard:
+              authenticators:
+                - UserNameAndPasswordSecurityProvider
+            pattern: ^/api/dealer/login
+
+        dealer_area:
+            provider: dealerProvider
+            guard:
+              authenticators:
+                - TokenSecurityProvider
+            pattern: ^/api/dealer
+
+        client_login:
+            provider: clientProvider
+            guard:
+              authenticators:
+                - UserNameAndPasswordSecurityProvider
+            pattern: ^/api/client/login
+
+        client_area:
+            provider: clientProvider
+            guard:
+              authenticators:
+                - TokenSecurityProvider
+            pattern: ^/api/client
+        main:
+            pattern: ~
+            anonymous: ~
+
+    access_control:
+        - { path: ^/api/admin/login, roles: ROLE_ADMIN }
+        - { path: ^/api/dealer/application, roles: ROLE_ADMIN }
+        - { path: ^/api/dealer/login, roles: ROLE_DEALER }
+        - { path: ^/api/dealer, roles: ROLE_DEALER }
+        - { path: ^/api/client, roles: ROLE_CLIENT }

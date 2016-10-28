@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<project name="carambacars" basedir="." default="test">
+    <target name="test">
+        <exec dir="." command="vendor/bin/phpunit -c phpunit.xml.dist" passthru="true" checkreturn="true"/>
+    </target>
+</project>

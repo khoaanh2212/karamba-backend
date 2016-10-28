@@ -1,0 +1,13 @@
+app/config/parameters.yml
+build/
+var/
+vendor/
+web/bundles/
+*.iml
+.idea/
+node_modules/
+app/Resources/webpack/server-bundle.js
+web/assets/build/
+Dockerfile
+.dockerignore
+README.md

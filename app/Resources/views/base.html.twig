@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block header %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
+        {% block javascripts %}
+            {% if app.environment == "dev" %}
+                <script src="{{ asset('webpack-dev-server.js', 'webpack') }}"></script>
+            {% endif %}
+            {% if app.environment == "dev" %}
+                <script src="{{ asset('assets/build/karambacars.js', 'webpack') }}"></script>
+            {% else %}
+                <script src="{{ asset('assets/build/karambacars.js') }}"></script>
+            {% endif %}
+        {% endblock %}
+    </body>
+</html>

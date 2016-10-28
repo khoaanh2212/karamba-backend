@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ "now"|date('d-m-Y h:m:s') }}
+    {{ react_component('ClientHeaderComponent') }}
+{% endblock %}
+
+{% block body %}
+    <h1>body</h1>
+{% endblock %}
+
+{% block footer %}
+    <h2>footer</h2>
+{% endblock %}

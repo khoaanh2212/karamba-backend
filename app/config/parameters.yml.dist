@@ -1,0 +1,29 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host:     mysql
+    database_port:     3306
+    database_name:     karambacars
+    database_user:     root
+    database_password: root
+    jato_username: "evgeny.predein@apiumtech.com"
+    jato_password: "gold6dust"
+    jato_host: "https://webapi-live.jato.com/jato.carspecs.api"
+    jato_db: "SSCE_CS2002"
+    # You should uncomment, this if you want use pdo_sqlite
+    # database_path: "%kernel.root_dir%/data.db3"
+    admin_username: admin
+    admin_password: 1234
+    mailer_transport:  smtp
+    mailer_sender: info@carnovo.com
+    accepted_application_token_endpoint: 'http://localhost:8080/confirm'
+    client_offer_endpoint: 'http://localhost:8080/client/offer/'
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+    assets_base_url: 'http://localhost:8080'
+    dealer_max_distance_km: 0
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            6612D5E283F2FC884A8137F4DCF5A
